@@ -45,14 +45,12 @@
     <div class="form-row">
       <div class="input-group">
         <label for="mobile">Mobile Number</label>
-        <input id="mobile" name="mobile" type="text"
-        pattern="(010|011|012)\d{8}"
+        <input id="mobile" name="mobile" type="number"
         [(ngModel)]="user.mobile" #mobile="ngModel"
         required>
       </div>
       <div *ngIf="mobile.dirty && mobile.errors" class="error">
         <small *ngIf="mobile.errors?.required">Mobile Number is required.</small>
-        <small *ngIf="mobile.errors?.minlength">Mobile Number is invalid.</small>
       </div>
     </div>
     <div class="form-row">
@@ -74,9 +72,9 @@
         pattern="^[a-zA-Z0-9]*$"
         required>
       </div>
-      <div *ngIf="nationalId.dirty && nationalId.errors" class="error">
-        <small *ngIf="passport.errors?.required">National ID is required.</small>
-        <small *ngIf="passport.errors?.pattern">National ID is invalid.</small>
+      <div *ngIf="passport.dirty && passport.errors" class="error">
+        <small *ngIf="passport.errors?.required">Passport ID is required.</small>
+        <small *ngIf="passport.errors?.pattern">Passport ID is invalid.</small>
       </div>
     </div>
     <div class="form-row">
@@ -104,7 +102,9 @@
     </div>
     <div class="form-row">
       <div class="input-group">
-        <button [disabled]="!registerForm.valid || user['photo'] == undefined" type="submit">Submit</button>
+        <button [disabled]="!registerForm.valid || user['photo'] == undefined" type="submit">
+          Submit <img *ngIf="isLoading" id="spinner" src="../../assets/icons/icons8-loading-48.png">
+        </button>
       </div>
     </div>
   </form>

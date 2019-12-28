@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-registration-page",
@@ -7,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationPageComponent implements OnInit {
   public user = {};
-  constructor() {}
+  isLoading = false;
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
   submit() {
     window.localStorage.setItem('user', JSON.stringify(this.user));
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+  }, 3000);
   }
 
   uploadPhoto(event) {

@@ -83,3 +83,14 @@ button[disabled] {
 .error {
   color: #E91E63;
 }
+
+#spinner {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
