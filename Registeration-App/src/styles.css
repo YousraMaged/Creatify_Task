@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+  color: #525252;
+}
+
+.content {
+  width: 50%;
+  margin: auto;
+  background-color: #FFF;
+  border-radius: 10px;
+  padding: 57px 65px;
+}

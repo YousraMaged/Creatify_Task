@@ -1,0 +1,111 @@
+<div class="container">
+  <form #registerForm="ngForm" (submit)="submit()" class="content">
+    <h3 class="title">Registration Form</h3>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="first-name">First Name</label>
+        <input id="first-name" name="first-name" type="text" [(ngModel)]="user.firstName" #firstName="ngModel" required>
+      </div>
+      <div *ngIf="firstName.dirty && firstName.errors" class="error">
+        <small *ngIf="firstName.errors?.required">First Name is required.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="middle-name">Middle Name</label>
+        <input id="middle-name" name="middle-name" type="text" [(ngModel)]="user.middleName" #middleName="ngModel"
+          required>
+      </div>
+      <div *ngIf="middleName.errors" class="error">
+        <small *ngIf="middleName.dirty && middleName.errors?.required">Middle Name is required.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="last-name">Last Name</label>
+        <input id="last-name" name="last-name" type="text" [(ngModel)]="user.lastName" #lastName="ngModel" required>
+      </div>
+      <div *ngIf="lastName.errors" class="error">
+        <small *ngIf="lastName.dirty && lastName.errors?.required">Last Name is required.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email"
+        [(ngModel)]="user.email" #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        required>
+      </div>
+      <div *ngIf="email.dirty && email.errors" class="error">
+        <small *ngIf="email.errors?.required">Email Address is required.</small>
+        <small *ngIf="email.errors?.pattern">Email Address is invalid.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="mobile">Mobile Number</label>
+        <input id="mobile" name="mobile" type="text"
+        pattern="(010|011|012)\d{8}"
+        [(ngModel)]="user.mobile" #mobile="ngModel"
+        required>
+      </div>
+      <div *ngIf="mobile.dirty && mobile.errors" class="error">
+        <small *ngIf="mobile.errors?.required">Mobile Number is required.</small>
+        <small *ngIf="mobile.errors?.minlength">Mobile Number is invalid.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="national-id">National ID</label>
+        <input id="national-id" name="national-id" type="number"
+        [(ngModel)]="user.nationalId" #nationalId="ngModel"
+         required>
+      </div>
+      <div *ngIf="nationalId.dirty && nationalId.errors" class="error">
+        <small *ngIf="nationalId.errors?.required">National ID is required.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="passport">Passport ID</label>
+        <input id="passport" name="passport" type="text"
+        [(ngModel)]="user.passport" #passport="ngModel"
+        pattern="^[a-zA-Z0-9]*$"
+        required>
+      </div>
+      <div *ngIf="nationalId.dirty && nationalId.errors" class="error">
+        <small *ngIf="passport.errors?.required">National ID is required.</small>
+        <small *ngIf="passport.errors?.pattern">National ID is invalid.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="birthday">Date of Birth</label>
+        <input id="birthday" name="birthday" type="date" [(ngModel)]="user.birthday" #birthday="ngModel" required>
+      </div>
+      <div *ngIf="birthday.errors" class="error">
+        <small *ngIf="birthday.dirty && birthday.errors?.required">Date of Birth is required.</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <label for="birthday">Personal Photo</label>
+        <button id="upload" (click)="file.click()" type="button">Upload Photo
+          <i><img src="/assets/icons/icons8-upload-to-cloud-24.png"></i>
+        </button>
+        <input id="photo" name="photo" accept="image/*" type="file"
+        (change)="uploadPhoto($event.target.files[0])"
+         #file required>
+         <div>
+           <small *ngIf="user.photo">{{user.photo.name}}</small>
+         </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="input-group">
+        <button [disabled]="!registerForm.valid || user['photo'] == undefined" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

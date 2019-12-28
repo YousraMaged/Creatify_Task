@@ -1,0 +1,6 @@
+.wrapper {
+  height: 100%;
+  padding: 150px 0;
+  background: rgb(60, 21, 87);
+  background: linear-gradient(39deg, rgba(60, 21, 87, 1) 0%, rgba(116, 71, 126, 1) 0%, rgba(228, 117, 117, 1) 50%, rgba(133, 195, 214, 1) 100%);
+}
